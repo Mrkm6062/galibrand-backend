@@ -9,14 +9,15 @@ const app = express();
 const PORT = process.env.PORT || 3010;
 
 // Middleware
-const corsOptions = {
-  // Allow requests only from your frontend URL (VS Code Live Server usually uses port 5500)
-  origin: ['http://localhost:3010', 'https://samriddhishop.info', 'https://galibrand.cloud', 'http://127.0.0.1:5500', 'http://localhost:5500'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  credentials: true
-};
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); // Enable pre-flight for all routes
+app.use(cors()); // Temporarily allow all origins
+// const corsOptions = {
+//   // Allow requests only from your frontend URL (VS Code Live Server usually uses port 5500)
+//   origin: ['http://localhost:3010', 'https://samriddhishop.info', 'https://galibrand.cloud', 'http://127.0.0.1:5500', 'http://localhost:5500'],
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//   credentials: true
+// };
+// app.use(cors(corsOptions));
+// app.options('*', cors(corsOptions)); // Enable pre-flight for all routes
 app.use(express.json());
 
 // Rate Limiting
