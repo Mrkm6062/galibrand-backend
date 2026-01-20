@@ -34,7 +34,7 @@ mongoose.connect(process.env.MONGO_URI)
   .catch(err => console.error('MongoDB Connection Error:', err));
 
 // Routes
-app.use('/api/contact', limiter, contactRoutes);
+app.use(['/api/contact', '/galibrand/api/contact'], limiter, contactRoutes);
 
 // Health Check
 app.get('/', (req, res) => {
