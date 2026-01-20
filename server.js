@@ -72,15 +72,12 @@ const Contact = mongoose.model('Contact', contactSchema);
 // Routes
 const contactRouter = express.Router();
 
-// GET Contacts
-contactRouter.get('/', async (req, res) => {
-  try {
-    const contacts = await Contact.find();
-    res.status(200).json(contacts);
-  } catch (error) {
-    console.error('Error fetching contacts:', error);
-    res.status(500).json({ message: 'Server error. Please try again later.' });
+// Restrict to POST only
+contactRouter.use((req, res, next) => {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: "Method not allowed" });
   }
+  next();
 });
 
 // POST Contact
