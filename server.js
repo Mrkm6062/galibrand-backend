@@ -6,12 +6,12 @@ const contactRoutes = require('./routes/contact');
 const rateLimit = require('express-rate-limit');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3010;
 
 // Middleware
 const corsOptions = {
   // Allow requests only from your frontend URL (VS Code Live Server usually uses port 5500)
-  origin: ['http://127.0.0.1:5500', 'http://localhost:5500']
+  origin: ['http://localhost:3010', 'https://samriddhishop.info', 'https://galibrand.cloud']
 };
 app.use(cors(corsOptions));
 app.use(express.json());

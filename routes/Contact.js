@@ -3,7 +3,7 @@ const router = express.Router();
 const Contact = require('../models/Contact');
 
 // POST /api/contact
-router.get('/contact', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const contacts = await Contact.find();
     res.status(200).json(contacts);
@@ -14,7 +14,7 @@ router.get('/contact', async (req, res) => {
 });
 
 // POST /api/contact
-router.post('/contact', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const { name, phone, email, plan } = req.body;
 
