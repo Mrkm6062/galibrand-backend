@@ -6,18 +6,20 @@ const contactRoutes = require('./routes/contact');
 const rateLimit = require('express-rate-limit');
 
 const app = express();
+
+// Trust the reverse proxy (Nginx) to correctly identify client IP addresses
+app.set('trust proxy', 1);
 const PORT = process.env.PORT || 3010;
 
 // Middleware
-app.use(cors()); // Temporarily allow all origins
-// const corsOptions = {
-//   // Allow requests only from your frontend URL (VS Code Live Server usually uses port 5500)
-//   origin: ['http://localhost:3010', 'https://samriddhishop.info', 'https://galibrand.cloud', 'http://127.0.0.1:5500', 'http://localhost:5500'],
-//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-//   credentials: true
-// };
-// app.use(cors(corsOptions));
-// app.options('*', cors(corsOptions)); // Enable pre-flight for all routes
+const corsOptions = {
+  // Allow requests from your frontend URL, local dev, and cloud domain
+  origin: ['http://localhost:3010', 'https://samriddhishop.info', 'https://galibrand.cloud', 'http://127.0.0.1:5500', 'http://localhost:5500'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true
+};
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Enable pre-flight for all routes
 app.use(express.json());
 
 // Rate Limiting
