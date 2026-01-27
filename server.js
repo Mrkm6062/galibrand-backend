@@ -18,7 +18,7 @@ app.use(cors({
     "https://galibrand.cloud",
     "https://www.galibrand.cloud"
   ],
-  methods: ["POST"],
+  methods: ["GET", "POST"],
   credentials: false
 }));
 app.use(express.json());
