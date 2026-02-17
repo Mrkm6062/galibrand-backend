@@ -63,11 +63,10 @@ const contactSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-  email: {
+  shopName: {
     type: String,
     required: true,
-    trim: true,
-    lowercase: true
+    trim: true
   },
   plan: {
     type: String,
@@ -99,19 +98,17 @@ contactRouter.use((req, res, next) => {
 // POST Contact
 contactRouter.post('/', async (req, res) => {
   try {
-    const { name, phone, email, plan, location } = req.body;
+    const { name, phone, shopName } = req.body;
 
     // Basic validation
-    if (!name || !phone || !email) {
+    if (!name || !phone || !shopName) {
       return res.status(400).json({ message: 'Please provide all required fields.' });
     }
 
     const newContact = new Contact({
       name,
       phone,
-      email,
-      plan,
-      location
+      shopName
     });
 
     await newContact.save();
@@ -125,9 +122,7 @@ contactRouter.post('/', async (req, res) => {
 
 Name: ${name}
 Phone: ${phone}
-Email: ${email}
-Plan: ${plan}
-Location: ${location}`
+Shop Name: ${shopName}`
     };
 
     transporter.sendMail(mailOptions, (err, info) => {
