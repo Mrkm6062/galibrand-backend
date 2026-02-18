@@ -16,12 +16,15 @@ const PORT = process.env.PORT || 3010;
 app.use(cors({
   origin: [
     "https://galibrand.cloud",
-    "https://www.galibrand.cloud"
+    "https://www.galibrand.cloud",
+    "https://samriddhishop.info",
+    "https://www.samriddhishop.info"
   ],
   methods: ["GET", "POST"],
   credentials: false
 }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Serve Static Files (Frontend)
 const frontendPath = path.join(__dirname, '../GaliBrand Frontend');
@@ -98,6 +101,7 @@ contactRouter.use((req, res, next) => {
 // POST Contact
 contactRouter.post('/', async (req, res) => {
   try {
+    console.log('Received contact submission:', req.body);
     const { name, phone, shopName } = req.body;
 
     // Basic validation
