@@ -120,7 +120,7 @@ contactRouter.post('/', async (req, res) => {
     // Send Email Alert
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: 'galibrand99@gmail.com',
+      to: 'support@galibrand.cloud',
       subject: 'New Contact Form Submission',
       text: `You have received a new contact request:
 
